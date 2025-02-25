@@ -16,7 +16,7 @@ Parameters:
 Usage Example:
     EXEC Silver.load_silver;
 ===============================================================================
-*/
+*/ 
 CREATE OR ALTER PROCEDURE silver.load_silver AS
 BEGIN
     DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @batch_end_time DATETIME; 
@@ -160,6 +160,10 @@ BEGIN
         PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
         PRINT '>> -------------';
 
+		PRINT '------------------------------------------------';
+		PRINT 'Loading ERP Tables';
+		PRINT '------------------------------------------------';
+
         -- Loading erp_cust_az12
         SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: silver.erp_cust_az12';
@@ -188,10 +192,6 @@ BEGIN
 	    SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
         PRINT '>> -------------';
-
-		PRINT '------------------------------------------------';
-		PRINT 'Loading ERP Tables';
-		PRINT '------------------------------------------------';
 
         -- Loading erp_loc_a101
         SET @start_time = GETDATE();
